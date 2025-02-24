@@ -1,11 +1,92 @@
-.navbar-brand img {
-  border-radius: 50%;
-  border: 2px solid #fff;
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600');
+
+body {
+    margin: 0;
+    background: #222;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 800;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background: #cf2d2d;
+}
+
+header::after {
+    content: '';
+    clear: both;
+}
+
+.logo {
+    float: left;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
 }
 
 
 
+nav li {
+    display: inline-block;
+    margin-left: 20px; /* Espaciado entre elementos */
+    padding-top: 10px;
+    position: relative;
+}
+
+nav a {
+    color: #fff; /* Color blanco para los enlaces */
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #fff;
+}
+
+nav a::before {
+    content: '';
+    height: 5px;
+    background-color: #444;
+
+    position: absolute;
+    top: 0;
+    width: 0%;
+
+    transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before {
+    width: 100%;
+}
+
 .navbar {
-  background-color: #8a111d;
-  font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-brand img {
+    max-height: 50px; /* Ajusta según el tamaño de tu logo */
+    width: auto;
+}
+
+
+.dropdown-menu a {
+  color: #000; /* Cambia el color de los enlaces dentro del dropdown */
+}
+
+.dropdown-menu a:hover {
+  color: #fff; /* Cambia el color de los enlaces al pasar el mouse */
+  background-color: #cf2d2d; /* Cambia el fondo al pasar el mouse */
 }
