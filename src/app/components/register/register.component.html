@@ -3,61 +3,45 @@
     <div class="col-md-6">
       <div class="card shadow-lg p-4">
         <h2 class="text-center mb-4">Registro</h2>
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-          <!-- Nombre -->
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="p-4">
           <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" formControlName="nombre"
-              placeholder="Introduce tu nombre">
-            <div *ngIf="registerForm.get('nombre')?.invalid && registerForm.get('nombre')?.touched" class="text-danger">
-              El nombre es obligatorio.
-            </div>
+            <label for="nombre" class="form-label fw-bold">Nombre:</label>
+            <input type="text" formControlName="nombre" class="form-control" id="nombre"
+              placeholder="Ingresa tu nombre">
           </div>
 
-          <!-- Email -->
           <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" formControlName="email"
-              placeholder="Introduce tu email">
-            <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger">
-              Introduce un email válido.
-            </div>
+            <label for="email" class="form-label fw-bold">Email:</label>
+            <input type="email" formControlName="email" class="form-control" id="email"
+              placeholder="Ingresa tu correo electrónico">
           </div>
 
-          <!-- Teléfono -->
           <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono</label>
-            <input type="text" class="form-control" id="telefono" formControlName="telefono"
-              placeholder="Introduce tu teléfono">
-            <div *ngIf="registerForm.get('telefono')?.invalid && registerForm.get('telefono')?.touched"
-              class="text-danger">
-              El teléfono es obligatorio.
-            </div>
+            <label for="telefono" class="form-label fw-bold">Teléfono:</label>
+            <input type="text" formControlName="telefono" class="form-control" id="telefono"
+              placeholder="Ingresa tu teléfono">
           </div>
 
-          <!-- Username -->
           <div class="mb-3">
-            <label for="username" class="form-label">Nombre de usuario</label>
-            <input type="text" class="form-control" id="username" formControlName="username"
-              placeholder="Elige un nombre de usuario">
-            <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"
-              class="text-danger">
-              El usuario es obligatorio.
-            </div>
+            <label for="username" class="form-label fw-bold">Username:</label>
+            <input type="text" formControlName="username" class="form-control" id="username"
+              placeholder="Elige un nombre de usuario" (input)="verificarUsuario()">
+            <p *ngIf="usernameEnUso" class="text-danger mt-2">❌ Este nombre de usuario ya está en uso</p>
           </div>
 
-          <!-- Password -->
           <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password" formControlName="password"
-              placeholder="Elige una contraseña">
-            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
-              class="text-danger">
-              La contraseña es obligatoria.
-            </div>
+            <label for="password" class="form-label fw-bold">Contraseña:</label>
+            <input type="password" formControlName="password" class="form-control" id="password"
+              placeholder="Crea una contraseña segura">
           </div>
 
-          <button type="submit" class="btn btn-primary w-100" [disabled]="registerForm.invalid">Registrar</button>
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label fw-bold">Confirmar contraseña:</label>
+            <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword"
+              placeholder="Repita su contraseña">
+              <p *ngIf="passwordsNoCoinciden" class="text-danger mt-2">❌ Las contraseñas no coinciden</p>
+          </div>
+          <button type="submit" class="btn btn-primary w-100" [disabled]="usernameEnUso">Registrar</button>
         </form>
       </div>
     </div>

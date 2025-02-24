@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:9090/cliente'; // Asegúrate que esto es correcto
+  private apiUrl = 'http://localhost:9090/cliente';
   user = signal<any>(null);
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -26,12 +26,29 @@ export class AuthService {
       nombre: data.nombre,
       email: data.email,
       username: data.username,
+      role: data.role,
     });
+  }
+
+  getUser() {
+    return this.user || 'null';
   }
 
   logout(): void {
     localStorage.removeItem('jwt');
     this.user.set(null);
     this.router.navigate(['/login']);
+  }
+
+  verificarUsuario(username: string): Observable<{ existe: boolean }> {
+    return this.http.post<{ existe: boolean }>(
+      `${this.apiUrl}/verificar-usuario`,
+      { username }
+    );
+  }
+
+  isAdmin(): boolean {
+    const user = this.user();
+    return user && user.role === 'admin';
   }
 }

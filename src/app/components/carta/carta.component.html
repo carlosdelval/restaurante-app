@@ -1,16 +1,15 @@
 <div class="container mt-4">
-  <h1 class="text-center my-4 display-4 font-weight-bold text-black">¡Ofertas de Completos destacados!</h1>
+  <h1 class="text-center my-4 display-4 font-weight-bold text-black">Carta de Completos</h1>
   <div class="row">
     <div class="col-md-4" *ngFor="let plato of platos">
       <div class="card mb-4 shadow-sm">
-        <img class="card-img-top" [src]="plato.img || 'assets/placeholder.png'" alt="{{ plato.nombre }}"
-          style="width: 100%; height: 200px; object-fit: cover;">
+        <img class="card-img-top" [src]="plato.img || 'assets/placeholder.png'" alt="{{ plato.nombre }}" style="width: 100%; height: 200px; object-fit: cover;">
         <div class="card-body">
           <h5 class="card-title">{{ plato.nombre }}</h5>
           <p class="card-text">{{ plato.descripcion }}</p>
           <p class="card-text font-weight-bold">{{ plato.precio }} €</p>
           <div class="d-flex justify-content-between align-items-center">
-            <a href="/plato/{{ plato.id }}" class="btn btn-primary">Más información</a>
+            <button class="btn btn-primary">Más información</button>
           </div>
         </div>
       </div>

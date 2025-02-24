@@ -4,14 +4,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { PlatosService, Plato } from '../../services/platos.service';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-listado-platos',
+  selector: 'app-carta',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, RouterModule],
-  templateUrl: './listado-platos.component.html',
-  styleUrls: ['./listado-platos.component.scss'],
+  imports: [CommonModule, MatCardModule, MatButtonModule],
+  templateUrl: './carta.component.html',
+  styleUrls: ['./carta.component.scss'],
   animations: [
     trigger('cardAnim', [
       transition(':enter', [
@@ -21,13 +20,13 @@ import { RouterModule } from '@angular/router';
     ]),
   ],
 })
-export class ListadoPlatosComponent implements OnInit {
+export class CartaComponent implements OnInit {
   platos: Plato[] = [];
 
   constructor(private platosService: PlatosService) {}
 
   ngOnInit(): void {
-    this.platosService.getPlatosDestacados().subscribe({
+    this.platosService.getAllPlatos().subscribe({
       next: (data) => (this.platos = data),
       error: (err) => console.error('Error cargando platos:', err),
     });

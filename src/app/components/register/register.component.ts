@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
+  usernameEnUso = false;
+  passwordsNoCoinciden = true;
 
   constructor(
     private fb: FormBuilder,
@@ -29,15 +31,37 @@ export class RegisterComponent implements OnInit {
       telefono: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+    });
+
+    // Escuchar cambios en los inputs de contraseña para validar en tiempo real
+    this.registerForm.get('confirmPassword')?.valueChanges.subscribe(() => {
+      this.checkPasswords();
     });
   }
 
+  verificarUsuario(): void {
+    const username = this.registerForm.get('username')?.value;
+    if (username) {
+      this.authService.verificarUsuario(username).subscribe(response => {
+        this.usernameEnUso = response.existe;
+      });
+    }
+  }
+
+  // Método para verificar si las contraseñas coinciden
+  checkPasswords(): void {
+    const password = this.registerForm.get('password')?.value;
+    const confirmPassword = this.registerForm.get('confirmPassword')?.value;
+    this.passwordsNoCoinciden = password !== confirmPassword;
+  }
+
   onSubmit(): void {
-    if (this.registerForm.valid) {
+    if (this.registerForm.valid && !this.passwordsNoCoinciden && !this.usernameEnUso) {
       this.authService.register(this.registerForm.value).subscribe({
         next: () => {
           alert('Registro exitoso, ¡bienvenido!');
-          this.router.navigate(['/login']); // Redirige al login
+          this.router.navigate(['/']); // Redirige al login
         },
         error: (err) => console.error('Error en registro', err),
       });
