@@ -1,0 +1,27 @@
+<h2>Lista de Clientes</h2>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Usuario</th>
+      <th>Rol</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente of clientes">
+      <td>{{ cliente.id }}</td>
+      <td>{{ cliente.nombre }}</td>
+      <td>{{ cliente.email }}</td>
+      <td>{{ cliente.username }}</td>
+      <td>{{ cliente.rol }}</td>
+      <td>
+        <button (click)="confirmarEliminacion(cliente.id)">❌ Eliminar</button>
+        <button>✏️ Editar</button> <!-- Agregaremos lógica de edición después -->
+      </td>
+    </tr>
+  </tbody>
+</table>
