@@ -22,8 +22,11 @@ export class PedidosComponent implements OnInit {
     const userId = this.authService.user()?.id;
     this.pedidoService.obtenerPedidosCliente(userId).subscribe((res) => {
       this.pedidos = res.pedidos || [];
+
+      // Obtener nombre de cada plato
       this.pedidos.forEach((pedido) => {
-        this.pedidoService.obtenerNombrePlato(pedido.plato).subscribe((res) => {
+        const platoId = pedido.plato_id; // Asegurar que sea un número
+        this.pedidoService.obtenerNombrePlato(platoId).subscribe((res) => {
           pedido.platoNombre = res.nombre;
         });
       });

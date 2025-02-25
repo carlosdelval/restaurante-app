@@ -1,4 +1,4 @@
-<h2>Lista de Pedidos</h2>
+<h1 class="text-center my-4 display-4 font-weight-bold text-black">Lista de tus pedidos</h1>
 <table>
   <thead>
     <tr>
@@ -12,9 +12,9 @@
   <tbody>
     <tr *ngFor="let pedido of pedidos">
       <td>{{ pedido.id }}</td>
-      <td>{{ pedido.nombrePlato }}</td>
+      <td>{{ pedido.platoNombre }}</td>
       <td>{{ pedido.fecha | date:'dd/MM/yyyy' }}</td>
-      <td>{{ pedido.total }}</td>
+      <td>{{ pedido.total }} €</td>
       <td *ngIf="authService.isAdmin()">{{ pedido.clienteNombre || 'Cargando...' }}</td>
     </tr>
   </tbody>

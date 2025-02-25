@@ -8,6 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { EditarUsuarioComponent } from './components/editar-usuario/editar-usuario.component';
 import { PedidosComponent } from './components/pedidos/pedidos.component';
+import { CocinerosComponent } from './components/cocineros/cocineros.component';
 
 export const routes: Routes = [
   { path: '', component: ListadoPlatosComponent },
@@ -17,5 +18,6 @@ export const routes: Routes = [
   {path: 'carta', component: CartaComponent},
   {path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard]},
   {path: 'editar-cliente/:id', component: EditarUsuarioComponent, canActivate: [AuthGuard]},
-  { path: 'pedidos', component: PedidosComponent }
+  { path: 'pedidos', component: PedidosComponent },
+  {path: 'cocineros', component: CocinerosComponent}
 ];
