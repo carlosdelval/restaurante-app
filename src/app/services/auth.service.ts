@@ -72,4 +72,12 @@ export class AuthService {
     const user = this.user();
     return user && user.role === 'admin';
   }
+
+  getUserById(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/obtener1/${id}`);
+  }
+
+  editUser(datos: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/editar1`, datos);
+  }
 }

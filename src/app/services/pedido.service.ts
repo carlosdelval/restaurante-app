@@ -10,7 +10,11 @@ export class PedidoService {
 
   constructor(private http: HttpClient) {}
 
-  crearPedido(clienteId: number, platoId: number, total: number): Observable<any> {
+  crearPedido(
+    clienteId: number,
+    platoId: number,
+    total: number
+  ): Observable<any> {
     const pedido = {
       cliente_id: clienteId,
       plato_id: platoId,
@@ -18,5 +22,21 @@ export class PedidoService {
       fecha_pedido: new Date(),
     };
     return this.http.post(`${this.apiUrl}/nuevo`, pedido);
+  }
+
+  obtenerPedidosCliente(id: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/obtener1`, { id });
+  }
+
+  obtenerTodosLosPedidos(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/obtener`);
+  }
+
+  obtenerNombreCliente(id: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/obtener-cliente`, { id });
+  }
+
+  obtenerNombrePlato(id: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/obtener-plato`, { id });
   }
 }

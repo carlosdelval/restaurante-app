@@ -20,7 +20,7 @@
       <td>{{ cliente.rol }}</td>
       <td>
         <button (click)="confirmarEliminacion(cliente.id)">❌ Eliminar</button>
-        <button>✏️ Editar</button> <!-- Agregaremos lógica de edición después -->
+        <button><a href="/editar-cliente/{{ cliente.id }}">✏️ Editar</a></button>
       </td>
     </tr>
   </tbody>

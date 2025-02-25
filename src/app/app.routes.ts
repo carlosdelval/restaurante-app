@@ -6,6 +6,8 @@ import { InfoPlatoComponent } from './components/info-plato/info-plato.component
 import { CartaComponent } from './components/carta/carta.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ClientesComponent } from './components/clientes/clientes.component';
+import { EditarUsuarioComponent } from './components/editar-usuario/editar-usuario.component';
+import { PedidosComponent } from './components/pedidos/pedidos.component';
 
 export const routes: Routes = [
   { path: '', component: ListadoPlatosComponent },
@@ -13,5 +15,7 @@ export const routes: Routes = [
   { path: 'registro', component: RegisterComponent },
   { path: 'plato/:id', component: InfoPlatoComponent },
   {path: 'carta', component: CartaComponent},
-  {path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard]}
+  {path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard]},
+  {path: 'editar-cliente/:id', component: EditarUsuarioComponent, canActivate: [AuthGuard]},
+  { path: 'pedidos', component: PedidosComponent }
 ];
