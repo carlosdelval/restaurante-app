@@ -16,11 +16,14 @@
     </ng-template>
 
     <div class="card-body">
-      <h2 class="card-title text-center text-primary">{{ plato.nombre }}</h2>
+      <h2 class="card-title text-center">{{ plato.nombre }}</h2>
       <p class="card-text">{{ plato.descripcion }}</p>
       <div class="d-flex justify-content-between">
         <span class="badge bg-success fs-6">Precio: {{ plato.precio }} €</span>
       </div>
+      <button class="btn btn-danger w-100 mt-2" (click)="realizarPedido()">
+        Realizar pedido <i class="bi bi-cart-check-fill"></i>
+      </button>
     </div>
   </div>
 </div>

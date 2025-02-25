@@ -39,10 +39,17 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
         if (response.result === 'OK') {
-          localStorage.setItem('jwt', response.jwt); // Guardamos el token
-          this.authService.setUser(response); // Actualizamos el estado del usuario
-          alert('¡Bienvenido!');
-          this.router.navigate(['/']); // Redirige al home
+          localStorage.setItem('jwt', response.jwt);
+
+          // 🔹 Obtener datos del usuario usando el JWT
+          this.authService.getUserFromToken(response.jwt).subscribe({
+            next: (userData) => {
+              this.authService.setUser(userData);
+              alert('¡Bienvenido!');
+              this.router.navigate(['/']);
+            },
+            error: (err) => console.error('Error obteniendo usuario', err),
+          });
         } else {
           alert('Usuario o contraseña incorrectos');
         }
@@ -51,4 +58,3 @@ export class LoginComponent implements OnInit {
     });
   }
 }
-
